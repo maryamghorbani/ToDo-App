@@ -46,9 +46,9 @@ class App extends Component {
                             <div className="d-flex flex-column align-items-center ">
                                 <nav className="col-6 mb-3">
                                     <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a className={`nav-item nav-link font-weight-bold ${ statusDone == false ? 'active' : '' }`}
+                                        <a className={`nav-item nav-link font-weight-bold ${ !statusDone ? 'active' : '' }`}
                                            id="nav-home-tab" onClick={() => this.setState({ statusDone: false })}>undone <span className="badge badge-secondary">9</span></a>
-                                        <a className={`nav-item nav-link active font-weight-bold ${ statusDone == true ? 'active' : '' }`}
+                                        <a className={`nav-item nav-link active font-weight-bold ${ statusDone ? 'active' : '' }`}
                                            id="nav-profile-tab" onClick={() => this.setState({ statusDone: true })}>done <span className="badge badge-success">9</span></a>
                                     </div>
                                 </nav>
