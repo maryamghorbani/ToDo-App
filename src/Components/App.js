@@ -1,19 +1,13 @@
 import React , { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
+import Header from "./header";
+
 
 class App extends Component {
     render() {
         return(
             <div className="App">
-                <header>
-                    <div className="navbar navbar-dark bg-dark shadow-sm">
-                        <div className="container d-flex justify-content-between">
-                            <a href="#" className="navbar-brand d-flex align-items-center">
-                                <strong>Todo App</strong>
-                            </a>
-                        </div>
-                    </div>
-                </header>
+                <Header />
                 <main>
                     <section className="jumbotron">
                         <div className="container d-flex flex-column align-items-center">
