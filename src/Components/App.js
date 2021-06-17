@@ -23,6 +23,14 @@ class App extends Component {
         })
     }
 
+    deleteTodo(key) {
+        this.setState(prevSate => {
+            return {
+                todos : prevSate.todos.filter(item => item.key !== key)
+            }
+        })
+    }
+
     render() {
 
         let { todos , statusDone } = this.state;
@@ -55,7 +63,7 @@ class App extends Component {
                                 {
                                     filterTodos == 0
                                         ? <p>There isn't any todos!</p>
-                                        : filterTodos.map(item => <Todo key={item.key} text={item.text} />)
+                                        : filterTodos.map(item => <Todo key={item.key} item={item} delete={this.deleteTodo.bind(this)}/>)
                                 }
                             </div>
 
