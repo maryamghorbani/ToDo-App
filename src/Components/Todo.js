@@ -10,8 +10,9 @@ function Todo (props) {
                     {props.item.text}
                 </div>
                 <div>
-                    <button type="button" className="btn btn-info btn-sm">edit</button>
-                    <button type="button" className="btn btn-danger btn-sm ml-1" onClick={()=>props.delete(props.item.key)}>delete</button>
+                    <button type="button" className="btn btn-success btn-sm mr-1">done</button>
+                    <button type="button" className="btn btn-info btn-sm mr-1">edit</button>
+                    <button type="button" className="btn btn-danger btn-sm" onClick={()=>props.delete(props.item.key)}>delete</button>
                 </div>
             </div>
         </div>
