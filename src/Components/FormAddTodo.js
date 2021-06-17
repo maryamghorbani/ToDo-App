@@ -9,16 +9,8 @@ function FormAddTodo(props) {
 
     let formHandler = e => {
         e.preventDefault();
-        this.setState(prevState => {
-            return {
-
-                todos : [
-                    ... prevState.todos,
-                    { key : Date.now() , done : false , text : prevState.formInput }
-                ],
-                formInput : ''
-            }
-        })
+        props.add(text);
+        setText('');
     }
 
     let inputHandler = e => setText(e.target.value)
