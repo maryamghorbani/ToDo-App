@@ -10,26 +10,6 @@ class App extends Component {
         todos : []
     }
 
-
-    formHandler(e) {
-        e.preventDefault();
-        this.setState(prevState => {
-            return {
-
-                todos : [
-                    ... prevState.todos,
-                    { key : Date.now() , done : false , text : prevState.formInput }
-                ],
-                formInput : ''
-            }
-        })
-    }
-
-    inputHandler(e) {
-        this.setState( { formInput : e.target.value } )
-    }
-
-
     render() {
         return(
             <div className="App">
