@@ -6,7 +6,7 @@ import FormAddTodo from "./FormAddTodo";
 
 class App extends Component {
     state = {
-        formInput : ''
+        todos : []
     }
 
     addTodo(text) {
