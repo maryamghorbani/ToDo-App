@@ -7,7 +7,8 @@ import Todo from "./Todo";
 
 class App extends Component {
     state = {
-        todos : []
+        todos : [],
+        statusDone : false
     }
 
     addTodo(text) {
@@ -24,7 +25,10 @@ class App extends Component {
 
     render() {
 
-        let { todos } = this.state;
+        let { todos , statusDone } = this.state;
+
+        let filterTodos = todos.filter( item => item.done == statusDone )
+
 
         return(
             <div className="App">
@@ -42,16 +46,16 @@ class App extends Component {
                             <div className="d-flex flex-column align-items-center ">
                                 <nav className="col-6 mb-3">
                                     <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a className="nav-item nav-link active font-weight-bold"
-                                           id="nav-home-tab">undone <span className="badge badge-secondary">9</span></a>
-                                        <a className="nav-item nav-link font-weight-bold"
-                                           id="nav-profile-tab">done <span className="badge badge-success">9</span></a>
+                                        <a className={`nav-item nav-link font-weight-bold ${ statusDone == false ? 'active' : '' }`}
+                                           id="nav-home-tab" onClick={() => this.setState({ statusDone: false })}>undone <span className="badge badge-secondary">9</span></a>
+                                        <a className={`nav-item nav-link active font-weight-bold ${ statusDone == true ? 'active' : '' }`}
+                                           id="nav-profile-tab" onClick={() => this.setState({ statusDone: true })}>done <span className="badge badge-success">9</span></a>
                                     </div>
                                 </nav>
                                 {
-                                    todos == 0
+                                    filterTodos == 0
                                         ? <p>There isn't any todos!</p>
-                                        : todos.map(item => <Todo key={item.key} text={item.text} />)
+                                        : filterTodos.map(item => <Todo key={item.key} text={item.text} />)
                                 }
                             </div>
 
