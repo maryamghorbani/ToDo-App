@@ -31,14 +31,16 @@ class App extends Component {
         })
     }
 
-    doneTodo(key) {
+    toggleTodo(key) {
         let { todos } = this.state;
         let item = todos.find(item => item.key == key)
-        item.done = true;
+        item.done = ! item.done;
+
+        let newTodos = todos.filter(item => item.key !== key)
 
         this.setState({
             todos: [
-                ... todos,
+                ... newTodos,
                 item
             ]
         })
@@ -79,7 +81,7 @@ class App extends Component {
                                         : filterTodos.map(item => <Todo key={item.key}
                                                                         item={item}
                                                                         delete={this.deleteTodo.bind(this)}
-                                                                        done={this.doneTodo.bind(this)}
+                                                                        done={this.toggleTodo.bind(this)}
                                                                         />
                                                                         )
                                 }
