@@ -23,6 +23,9 @@ class App extends Component {
     }
 
     render() {
+
+        let { todos } = this.state;
+
         return(
             <div className="App">
                 <Header />
@@ -45,7 +48,11 @@ class App extends Component {
                                            id="nav-profile-tab">done <span className="badge badge-success">9</span></a>
                                     </div>
                                 </nav>
-                                <Todo />
+                                {
+                                    todos == 0
+                                        ? <p>There isn't any todos!</p>
+                                        : todos.map(item => <Todo key={item.key} text={item.text} />)
+                                }
                             </div>
 
                         </div>
