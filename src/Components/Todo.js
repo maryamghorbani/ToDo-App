@@ -9,7 +9,7 @@ function Todo (props) {
     const [ edit , setEdit ] = useState(false);
 
     let editHandler = text => {
-        props.edit(text);
+        props.edit(item.key,text);
         setEdit(false);
     }
 
