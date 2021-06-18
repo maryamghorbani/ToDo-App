@@ -6,12 +6,17 @@ function Todo (props) {
 
     const { item } = props;
 
-    const [ edit , setEdit ] = useState(false)
+    const [ edit , setEdit ] = useState(false);
+
+    let editHandler = text => {
+        props.edit(text);
+        setEdit(false);
+    }
 
     return (
-        <div>
+        <>
             {
-                edit == false
+                ! edit
                 ? (
                         <div className="col-6 mb-2">
                             <div
@@ -27,9 +32,9 @@ function Todo (props) {
                             </div>
                         </div>
                     )
-                    : <EditTodo />
+                    : <EditTodo text={item.text} edit={editHandler} />
             }
-        </div>
+        </>
 
     )
 }

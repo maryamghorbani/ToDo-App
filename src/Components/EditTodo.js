@@ -16,7 +16,7 @@ function EditTodo (props) {
                     <input value={text} onChange={inputHandler} className="form-control" />
                 </div>
                 <div>
-                    <button type="button" className="btn btn-info btn-sm mr-1">edit</button>
+                    <button type="button" className="btn btn-info btn-sm mr-1" onClick={()=> props.edit(text)}>edit</button>
                 </div>
             </div>
         </div>
