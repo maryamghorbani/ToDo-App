@@ -1,8 +1,8 @@
 import React , { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
-import Header from "./header";
-import FormAddTodo from "./FormAddTodo";
-import Todo from "./Todo";
+import Header from "./Layout/header";
+import FormAddTodo from "./Todo/FormAddTodo";
+import Todo from "./Todo/Todo";
 
 
 class App extends Component {
