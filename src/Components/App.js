@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Header from "./Layout/header";
 import FormAddTodo from "./Todo/FormAddTodo";
 import TodoList from "./Todo/TodoList";
-import Todo from "./Todo/Todo";
 
 
 class App extends Component {
