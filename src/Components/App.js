@@ -2,14 +2,13 @@ import React , { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import Header from "./Layout/header";
 import FormAddTodo from "./Todo/FormAddTodo";
-import Todo from "./Todo/Todo";
 import TodoList from "./Todo/TodoList";
+import Todo from "./Todo/Todo";
 
 
 class App extends Component {
     state = {
-        todos : [],
-        statusDone : false
+        todos : []
     }
 
     addTodo(text) {
@@ -64,11 +63,6 @@ class App extends Component {
 
     render() {
 
-        let { todos , statusDone } = this.state;
-
-        let filterTodos = todos.filter( item => item.done == statusDone )
-
-
         return(
             <div className="App">
                 <Header />
@@ -83,7 +77,11 @@ class App extends Component {
                     <div className="todosList">
                         <div className="container">
                             <div className="d-flex flex-column align-items-center ">
-                                <TodoList />
+                                <TodoList todos={this.state.todos}
+                                          delete={this.deleteTodo.bind(this)}
+                                          done={this.toggleTodo.bind(this)}
+                                          edit={this.editTodo.bind(this)}
+                                />
                             </div>
 
                         </div>
