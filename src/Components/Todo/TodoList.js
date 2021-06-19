@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState , useContext } from 'react';
 import Todo from "./Todo";
+import TodosContext from "../../Context/todos";
 
 function TodoList(props) {
 
     const [statusDone , setDone] = useState(false);
+    const todosContext = useContext(TodosContext);
 
-    let { todos } = props;
+    let { todos } = todosContext;
 
     let filterTodos = todos.filter( item => item.done == statusDone )
 
@@ -21,9 +23,9 @@ function TodoList(props) {
                 </div>
             </nav>
             {
-                filterTodos == 0
+                filterTodos.length == 0
                     ? <p>There isn't any todos!</p>
-                    : filterTodos.map(item => <Todo key={item.key}
+                    : filterTodos.filter( item => item.done == statusDone ).map(item => <Todo key={item.key}
                                                     item={item}
                                                     delete={props.delete}
                                                     done={props.done}
