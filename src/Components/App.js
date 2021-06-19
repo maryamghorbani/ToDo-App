@@ -68,7 +68,13 @@ class App extends Component {
     render() {
 
         return(
-            <TodosContext.Provider value={this.state}>
+            <TodosContext.Provider value={{
+                todos : this.state.todos,
+                add : this.addTodo.bind(this),
+                done : this.toggleTodo.bind(this),
+                delete : this.deleteTodo.bind(this),
+                edit : this.editTodo.bind(this)
+            }}>
                 <div className="App">
                     <Header />
                     <main>
