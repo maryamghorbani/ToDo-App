@@ -16,9 +16,9 @@ class FormAddTodo extends React.Component {
 
     render() {
         return (
-            <form className="form-inline" onSubmit={formHandler}>
+            <form className="form-inline" onSubmit={this.formHandler.bind(this)}>
                 <div className="form-group">
-                    <input type="text" className="form-control mx-sm-3" placeholder="i want to do ..." value={text} onChange={inputHandler}/>
+                    <input type="text" className="form-control mx-sm-3" placeholder="i want to do ..." value={this.state.text} onChange={this.inputHandler.bind(this)}/>
                     <button type="submit" className="btn btn-primary">add</button>
                 </div>
             </form>
