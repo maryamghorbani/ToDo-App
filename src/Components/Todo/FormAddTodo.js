@@ -5,10 +5,11 @@ import TodosContext from "../../Context/todos";
 class FormAddTodo extends React.Component {
 
     state = { text : '' }
+    static contextType = TodosContext;
 
     formHandler(e) {
         e.preventDefault();
-        todosContext.add(text);
+        this.context.add(this.state.text);;
         this.setState({ text : '' })
     }
 
