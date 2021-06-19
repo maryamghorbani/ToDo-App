@@ -1,32 +1,29 @@
-import React , { useState , useContext } from "react";
+import React from "react";
 import TodosContext from "../../Context/todos";
 
 
+class FormAddTodo extends React.Component {
 
-function FormAddTodo(props) {
+    state = { text : '' }
 
-    const [ text , setText ] = useState('');
-    const todosContext = useContext(TodosContext);
-
-
-    let formHandler = e => {
+    formHandler(e) {
         e.preventDefault();
         todosContext.add(text);
-        setText('');
+        this.setState({ text : '' })
     }
 
-    let inputHandler = e => setText(e.target.value)
+    inputHandler(e) { this.setState({ text : e.target.value }) }
 
-
-
-    return (
-        <form className="form-inline" onSubmit={formHandler}>
-            <div className="form-group">
-                <input type="text" className="form-control mx-sm-3" placeholder="i want to do ..." value={text} onChange={inputHandler}/>
-                <button type="submit" className="btn btn-primary">add</button>
-            </div>
-        </form>
-    )
+    render() {
+        return (
+            <form className="form-inline" onSubmit={formHandler}>
+                <div className="form-group">
+                    <input type="text" className="form-control mx-sm-3" placeholder="i want to do ..." value={text} onChange={inputHandler}/>
+                    <button type="submit" className="btn btn-primary">add</button>
+                </div>
+            </form>
+        )
+    }
 }
 
 export default FormAddTodo;
