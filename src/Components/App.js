@@ -13,7 +13,8 @@ import AuthContext from "../Context/auth";
 
 class App extends Component {
     state = {
-        todos : []
+        todos : [],
+        authenticated : false
     }
 
     addTodo(text) {
@@ -70,7 +71,11 @@ class App extends Component {
 
         return(
 
-            <AuthContext.Provider>
+            <AuthContext.Provider value={{
+                authenticated: this.state.authenticated,
+                login : () => { this.setState({ authenticated : true }) }
+            }
+            }>
                 <TodosContext.Provider value={{
                     todos : this.state.todos,
                     add : this.addTodo.bind(this),
