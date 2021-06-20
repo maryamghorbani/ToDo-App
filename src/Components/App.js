@@ -1,4 +1,4 @@
-import React , { Component } from 'react';
+import React , { useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 // import components
@@ -9,6 +9,11 @@ import TodoList from "./Todo/TodoList";
 // import context
 import TodosContext from "../Context/todos";
 import AuthContext from "../Context/auth";
+
+// import reducer
+import AppReducer from "../Reducers/appReducer";
+
+
 
 
 // class App extends Component {
@@ -115,25 +120,25 @@ import AuthContext from "../Context/auth";
 function App() {
 
 
-    // state = {
-    //     todos : [],
-    //     authenticated : false
-    // }
-
+    const [state , dispatch] = useReducer( AppReducer , {
+        todos : [],
+        authenticated : false
+    } )
 
     return(
             <AuthContext.Provider value={{
-                authenticated: this.state.authenticated,
-                login : () => { this.setState({ authenticated : true }) },
-                logout : () => { this.setState({ authenticated : false }) }
+                authenticated: state.authenticated,
+                // login : () => { this.setState({ authenticated : true }) },
+                // logout : () => { this.setState({ authenticated : false }) }
             }
             }>
                 <TodosContext.Provider value={{
-                    todos : this.state.todos,
-                    add : this.addTodo.bind(this),
-                    done : this.toggleTodo.bind(this),
-                    delete : this.deleteTodo.bind(this),
-                    edit : this.editTodo.bind(this)
+                    // todos : this.state.todos,
+                    dispatch
+                    // add : this.addTodo.bind(this),
+                    // done : this.toggleTodo.bind(this),
+                    // delete : this.deleteTodo.bind(this),
+                    // edit : this.editTodo.bind(this)
                 }}>
                     <div className="App">
                         <Header />
@@ -148,7 +153,7 @@ function App() {
                             <div className="todosList">
                                 <div className="container">
                                     <div className="d-flex flex-column align-items-center ">
-                                        <TodoList />
+                                        {/*<TodoList />*/}
                                     </div>
 
                                 </div>

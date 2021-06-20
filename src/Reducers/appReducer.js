@@ -1,9 +1,21 @@
-function AppReducer(prevState , action) {
-    console.log(prevState,action);
-    return{};
+function AppReducer(state , action) {
+    switch (action.type) {
+        case 'add_todo':
+            let {text} = action.payload;
+            return {
+                todos : [
+                    ...state.todos,
+                    { key : Date.now() , done : false , text }
+                ]
+            }
+            break;
+        default:
+            return state;
+            break;
+    }
 }
 
-
+export default AppReducer;
 
 
 //     addTodo(text) {
