@@ -73,7 +73,8 @@ class App extends Component {
 
             <AuthContext.Provider value={{
                 authenticated: this.state.authenticated,
-                login : () => { this.setState({ authenticated : true }) }
+                login : () => { this.setState({ authenticated : true }) },
+                logout : () => { this.setState({ authenticated : false }) }
             }
             }>
                 <TodosContext.Provider value={{
