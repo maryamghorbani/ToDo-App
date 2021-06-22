@@ -148,7 +148,7 @@ function App() {
                             <div className="todosList">
                                 <div className="container">
                                     <div className="d-flex flex-column align-items-center ">
-                                        {/*<TodoList />*/}
+                                        <TodoList />
                                     </div>
 
                                 </div>
