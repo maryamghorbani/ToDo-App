@@ -126,11 +126,10 @@ function App() {
     } )
 
     return(
-            <AuthContext.Provider value={{
-                authenticated: state.authenticated,
-                dispatch
-            }
-            }>
+                <AuthContext.Provider value={{
+                    authenticated : state.authenticated,
+                    dispatch
+                }}>
                 <TodosContext.Provider value={{
                     todos : state.todos,
                     dispatch
