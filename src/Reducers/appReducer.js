@@ -2,21 +2,13 @@ function AppReducer(state , action) {
     console.log(state,action);
     switch (action.type) {
         case 'add_todo':
-            let {text} = action.payload;
-            return {
-                ...state,
-                todos : [
-                    ...state.todos,
-                    { key : Date.now() , done : false , text }
-                ]
-            }
+            return addTodo( state , action );
             break;
         case 'delete_todo' :
-            let { key } = action.payload;
-            return {
-                ...state,
-                todos : state.todos.filter(item => item.key !== key)
-            }
+            deletTodo( state , action );
+            break;
+        case 'toggle_todo' :
+            toggleTodo( state , action );
             break;
         case 'login_user':
             return {
@@ -37,6 +29,44 @@ function AppReducer(state , action) {
 }
 
 export default AppReducer;
+
+
+
+
+let addTodo = ( state , action ) => {
+    let {text} = action.payload;
+    return {
+        ...state,
+        todos : [
+            ...state.todos,
+            { key : Date.now() , done : false , text }
+        ]
+    }
+}
+
+let deletTodo = ( state , action ) => {
+    let { key } = action.payload;
+    return {
+        ...state,
+        todos : state.todos.filter(item => item.key !== key)
+    }
+}
+
+let toggleTodo = ( state , action ) => {
+    let { key } = action.payload;
+    let item = state.todos.find(item => item.key == key)
+    item.done = ! item.done;
+
+    let newTodos = state.todos.filter(item => item.key !== key)
+
+    return {
+        ...state,
+        todos: [
+            ... newTodos,
+            item
+        ]
+    }
+}
 
 
 //     addTodo(text) {
