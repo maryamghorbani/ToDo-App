@@ -10,6 +10,13 @@ function AppReducer(state , action) {
                 ]
             }
             break;
+        case 'delete_todo' :
+            let { key } = action.payload;
+            return {
+                ...state.todos,
+                todos : state.todos.filter(item => item.key !== key)
+            }
+            break;
         case 'login_user':
             return {
                 ...state,
