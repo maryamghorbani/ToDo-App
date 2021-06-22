@@ -1,6 +1,7 @@
 import React, { useState , useContext } from "react";
 import EditTodo from "./EditTodo";
 import TodosContext from "../../Context/todos";
+import axios from "axios";
 
 
 function Todo (props) {
@@ -17,7 +18,14 @@ function Todo (props) {
 
     let deleteHandler = e => {
         //ajax
-        todosContext.dispatch({ type : 'delete_todo' , payload : { key : item.key } })
+        axios.delete(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos/${item.key}.json`)
+            .then(response => {
+                todosContext.dispatch({ type : 'delete_todo' , payload : { key : item.key } })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
     }
 
     return (
