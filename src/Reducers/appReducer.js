@@ -30,12 +30,12 @@ export default AppReducer;
 
 
 let addTodo = ( state , action ) => {
-    let {text} = action.payload;
+    let { todo } = action.payload;
     return {
         ...state,
         todos : [
             ...state.todos,
-            { key : Date.now() , done : false , text }
+            todo
         ]
     }
 }
