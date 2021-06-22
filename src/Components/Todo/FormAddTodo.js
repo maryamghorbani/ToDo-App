@@ -1,6 +1,7 @@
 import React from 'react'
 import TodosContext from './../../Context/todos';
 import AuthContext from '../../Context/auth';
+import axios from "axios";
 
 class FormAddTodo extends React.Component {
     state = { text : '' }
@@ -8,7 +9,11 @@ class FormAddTodo extends React.Component {
 
     formHandler(e) {
         e.preventDefault();
-        this.context.dispatch({ type : 'add_todo' , payload : { text : this.state.text } })
+        // ajax
+        axios.post(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos.json` , { text : this.state.text , done : false })
+            .then( response => console.log(response))
+            .catch( err => console.log(err) )
+        // this.context.dispatch({ type : 'add_todo' , payload : { text : this.state.text } })
         this.setState({ text : '' })
     }
 
