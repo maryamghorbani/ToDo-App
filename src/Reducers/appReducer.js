@@ -1,4 +1,5 @@
 function AppReducer(state , action) {
+    
     switch (action.type) {
         case 'add_todo':
             let {text} = action.payload;
