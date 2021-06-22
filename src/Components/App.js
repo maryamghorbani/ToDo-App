@@ -128,17 +128,12 @@ function App() {
     return(
             <AuthContext.Provider value={{
                 authenticated: state.authenticated,
-                // login : () => { this.setState({ authenticated : true }) },
-                // logout : () => { this.setState({ authenticated : false }) }
+                dispatch
             }
             }>
                 <TodosContext.Provider value={{
-                    // todos : this.state.todos,
+                    todos : state.todos,
                     dispatch
-                    // add : this.addTodo.bind(this),
-                    // done : this.toggleTodo.bind(this),
-                    // delete : this.deleteTodo.bind(this),
-                    // edit : this.editTodo.bind(this)
                 }}>
                     <div className="App">
                         <Header />

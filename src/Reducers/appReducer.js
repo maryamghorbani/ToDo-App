@@ -3,10 +3,23 @@ function AppReducer(state , action) {
         case 'add_todo':
             let {text} = action.payload;
             return {
+                ...state,
                 todos : [
                     ...state.todos,
                     { key : Date.now() , done : false , text }
                 ]
+            }
+            break;
+        case 'login_user':
+            return {
+                ...state,
+                authenticated : true
+            }
+            break;
+        case 'logout_user':
+            return {
+                ...state,
+                authenticated : false
             }
             break;
         default:
