@@ -1,4 +1,4 @@
-import React , { useReducer } from 'react';
+import React , { useReducer , useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 // import components
@@ -12,6 +12,7 @@ import AuthContext from "../Context/auth";
 
 // import reducer
 import AppReducer from "../Reducers/appReducer";
+import axios from "axios";
 
 
 
@@ -124,6 +125,29 @@ function App() {
         todos : [],
         authenticated : false
     } )
+
+
+    useEffect(() => {
+        axios.get(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos.json`)
+            .then( response => jsonHandler(response.data) )
+            .catch( err => console.log(err) );
+    },[] ) // run a function just 1 bar
+
+
+    let jsonHandler = (data) => {
+        let todos = Object
+                        .entries(data)
+                        .map(([key,value]) => {
+                            return {
+                                ...value,
+                                key
+                            }
+                        } )
+        dispatch({ type : 'init_todo' , payload : { todos }})
+    }
+
+
+
 
     return(
                 <AuthContext.Provider value={{
