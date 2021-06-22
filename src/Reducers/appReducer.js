@@ -1,5 +1,5 @@
 function AppReducer(state , action) {
-    
+    console.log(state,action);
     switch (action.type) {
         case 'add_todo':
             let {text} = action.payload;
@@ -14,7 +14,7 @@ function AppReducer(state , action) {
         case 'delete_todo' :
             let { key } = action.payload;
             return {
-                ...state.todos,
+                ...state,
                 todos : state.todos.filter(item => item.key !== key)
             }
             break;
