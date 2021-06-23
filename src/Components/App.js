@@ -1,4 +1,4 @@
-import React , { useReducer , useEffect } from 'react';
+import React , { useReducer , useEffect , useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import todoApi from "../Api/todos";
 
@@ -128,7 +128,11 @@ function App() {
     } )
 
 
+    const [loading , setLoading] = useState();
+
+
     useEffect(() => {
+        setLoading(true);
         todoApi.get(`/todos.json`)
             .then( response => jsonHandler(response.data) )
             .catch( err => {} );
@@ -136,6 +140,7 @@ function App() {
 
 
     let jsonHandler = (data) => {
+        setLoading(false);
         let todos = Object
                         .entries(data)
                         .map(([key,value]) => {
@@ -172,7 +177,11 @@ function App() {
                             <div className="todosList">
                                 <div className="container">
                                     <div className="d-flex flex-column align-items-center ">
-                                        <TodoList />
+                                        {
+                                            loading
+                                            ? <h2> Loading data ... </h2>
+                                                : ( <TodoList /> )
+                                        }
                                     </div>
 
                                 </div>

@@ -18,7 +18,7 @@ instance.interceptors.response.use(function (response) {
     return response;
 }, function (err) {
     // system log
-    
+
     return (Promise.reject(err));
 })
 
