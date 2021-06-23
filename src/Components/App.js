@@ -1,5 +1,6 @@
 import React , { useReducer , useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import todoApi from "../Api/todos";
 
 // import components
 import Header from "./Layout/header";
@@ -12,7 +13,7 @@ import AuthContext from "../Context/auth";
 
 // import reducer
 import AppReducer from "../Reducers/appReducer";
-import axios from "axios";
+
 
 
 
@@ -128,7 +129,7 @@ function App() {
 
 
     useEffect(() => {
-        axios.get(`/todos.json`)
+        todoApi.get(`/todos.json`)
             .then( response => jsonHandler(response.data) )
             .catch( err => console.log(err) );
     },[] ) // run a function just 1 bar

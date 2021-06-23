@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 
-axios.defaults.baseURL = 'https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app'
+// axios.defaults.baseURL = 'https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app'
 // when we have one base url for all of the project
 
 

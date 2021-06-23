@@ -1,7 +1,7 @@
 import React, { useState , useContext } from "react";
 import EditTodo from "./EditTodo";
 import TodosContext from "../../Context/todos";
-import axios from "axios";
+import todoApi from "../../Api/todos";
 
 
 function Todo (props) {
@@ -12,7 +12,7 @@ function Todo (props) {
     const todosContext = useContext(TodosContext);
 
     let editHandler = text => {
-        axios.put(`/todos/${item.key}.json` , { done : item.done , text })
+        todoApi.put(`/todos/${item.key}.json` , { done : item.done , text })
             .then( response => {
                 todosContext.dispatch({ type : 'edit_todo' , payload : { key : item.key , text}})
             })
@@ -22,7 +22,7 @@ function Todo (props) {
 
 
     let doneHandler = e => {
-        axios.put(`/todos/${item.key}.json` , { done : ! item.done , text : item.text })
+        todoApi.put(`/todos/${item.key}.json` , { done : ! item.done , text : item.text })
             .then( response => {
                 todosContext.dispatch({ type : 'toggle_todo' , payload : { key : item.key}})
             })
@@ -32,7 +32,7 @@ function Todo (props) {
 
     let deleteHandler = e => {
         //ajax
-        axios.delete(`/todos/${item.key}.json`)
+        todoApi.delete(`/todos/${item.key}.json`)
             .then(response => {
                 todosContext.dispatch({ type : 'delete_todo' , payload : { key : item.key } })
             })
