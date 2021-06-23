@@ -131,7 +131,7 @@ function App() {
     useEffect(() => {
         todoApi.get(`/todos.json`)
             .then( response => jsonHandler(response.data) )
-            .catch( err => console.log(err) );
+            .catch( err => {} );
     },[] ) // run a function just 1 bar
 
 
