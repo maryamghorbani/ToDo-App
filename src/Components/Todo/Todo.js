@@ -12,7 +12,11 @@ function Todo (props) {
     const todosContext = useContext(TodosContext);
 
     let editHandler = text => {
-        todosContext.dispatch({ type : 'edit_todo' , payload : { key : item.key , text}})
+        axios.put(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos/${item.key}.json` , { done : item.done , text })
+            .then( response => {
+                todosContext.dispatch({ type : 'edit_todo' , payload : { key : item.key , text}})
+            })
+            .catch( err => console.log(err));
         setEdit(false);
     }
 
