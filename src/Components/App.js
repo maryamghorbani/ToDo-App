@@ -128,7 +128,7 @@ function App() {
 
 
     useEffect(() => {
-        axios.get(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos.json`)
+        axios.get(`/todos.json`)
             .then( response => jsonHandler(response.data) )
             .catch( err => console.log(err) );
     },[] ) // run a function just 1 bar

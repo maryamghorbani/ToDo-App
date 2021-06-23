@@ -12,7 +12,7 @@ function Todo (props) {
     const todosContext = useContext(TodosContext);
 
     let editHandler = text => {
-        axios.put(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos/${item.key}.json` , { done : item.done , text })
+        axios.put(`/todos/${item.key}.json` , { done : item.done , text })
             .then( response => {
                 todosContext.dispatch({ type : 'edit_todo' , payload : { key : item.key , text}})
             })
@@ -22,7 +22,7 @@ function Todo (props) {
 
 
     let doneHandler = e => {
-        axios.put(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos/${item.key}.json` , { done : ! item.done , text : item.text })
+        axios.put(`/todos/${item.key}.json` , { done : ! item.done , text : item.text })
             .then( response => {
                 todosContext.dispatch({ type : 'toggle_todo' , payload : { key : item.key}})
             })
@@ -32,7 +32,7 @@ function Todo (props) {
 
     let deleteHandler = e => {
         //ajax
-        axios.delete(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos/${item.key}.json`)
+        axios.delete(`/todos/${item.key}.json`)
             .then(response => {
                 todosContext.dispatch({ type : 'delete_todo' , payload : { key : item.key } })
             })
