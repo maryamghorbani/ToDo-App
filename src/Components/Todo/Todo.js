@@ -20,6 +20,16 @@ function Todo (props) {
         setEdit(false);
     }
 
+
+    let doneHandler = e => {
+        axios.put(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos/${item.key}.json` , { done : ! item.done , text : item.text })
+            .then( response => {
+                todosContext.dispatch({ type : 'toggle_todo' , payload : { key : item.key}})
+            })
+            .catch( err => console.log(err));
+    }
+
+
     let deleteHandler = e => {
         //ajax
         axios.delete(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos/${item.key}.json`)
@@ -44,7 +54,7 @@ function Todo (props) {
                                     {item.text}
                                 </div>
                                 <div>
-                                    <button type="button" className={`btn btn-sm mr-1 ${ !item.done ? 'btn-success' : 'btn-warning'}`} onClick={() => todosContext.dispatch({ type : 'toggle_todo' , payload : { key : item.key}})}>{ item.done ? 'undone' : 'done'}</button>
+                                    <button type="button" className={`btn btn-sm mr-1 ${ !item.done ? 'btn-success' : 'btn-warning'}`} onClick={doneHandler}>{ item.done ? 'undone' : 'done'}</button>
                                     <button type="button" className="btn btn-info btn-sm mr-1" onClick={() => setEdit(true)}>edit</button>
                                     <button type="button" className="btn btn-danger btn-sm" onClick={deleteHandler}>delete</button>
                                 </div>
