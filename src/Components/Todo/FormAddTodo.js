@@ -10,11 +10,13 @@ class FormAddTodo extends React.Component {
     formHandler(e) {
         e.preventDefault();
         // ajax
-        let todo = { text : this.state.text , done : false };
-        axios.post(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos.json` , todo )
-            .then( response => this.context.dispatch({ type : 'add_todo' , payload : { todo : { ...todo , key : response.data.name } } }))
-            .catch( err => console.log(err) )
-        this.setState({ text : '' })
+        if (this.state.text.length > 1) {
+            let todo = { text : this.state.text , done : false };
+            axios.post(`https://todoapp-c9b89-default-rtdb.europe-west1.firebasedatabase.app/todos.json` , todo )
+                .then( response => this.context.dispatch({ type : 'add_todo' , payload : { todo : { ...todo , key : response.data.name } } }))
+                .catch( err => console.log(err) )
+            this.setState({ text : '' })
+        }
     }
 
 
