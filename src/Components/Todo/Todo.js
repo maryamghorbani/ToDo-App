@@ -8,18 +8,18 @@ function Todo (props) {
 
     const { item } = props;
 
-    const [ loading , setLoading ] = useState(false);
-    let status;
-
 
     const [ edit , setEdit ] = useState(false);
     const todosContext = useContext(TodosContext);
+
+    const [ loading , setLoading ] = useState(false);
 
     let editHandler = text => {
         setLoading(true);
         todoApi.put(`/todos/${item.key}.json` , { done : item.done , text })
             .then( response => {
                 todosContext.dispatch({ type : 'edit_todo' , payload : { key : item.key , text}})
+                setLoading(false)
             })
             .catch( err => console.log(err));
         setEdit(false);
@@ -31,6 +31,7 @@ function Todo (props) {
         todoApi.put(`/todos/${item.key}.json` , { done : ! item.done , text : item.text })
             .then( response => {
                 todosContext.dispatch({ type : 'toggle_todo' , payload : { key : item.key}})
+                setLoading(false)
             })
             .catch( err => console.log(err));
     }
@@ -42,6 +43,7 @@ function Todo (props) {
         todoApi.delete(`/todos/${item.key}.json`)
             .then(response => {
                 todosContext.dispatch({ type : 'delete_todo' , payload : { key : item.key } })
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err);
@@ -67,8 +69,8 @@ function Todo (props) {
                                             ? <h5>Loading data ...</h5>
                                             : (
                                                 <>
-                                                    <button type="button" className="btn btn-info btn-sm mr-1" onClick={() => setEdit(true)}>edit</button>
                                                     <button type="button" className={`btn btn-sm mr-1 ${ !item.done ? 'btn-success' : 'btn-warning'}`} onClick={doneHandler}>{ item.done ? 'undone' : 'done'}</button>
+                                                    <button type="button" className="btn btn-info btn-sm mr-1" onClick={() => setEdit(true)}>edit</button>
                                                     <button type="button" className="btn btn-danger btn-sm" onClick={deleteHandler}>delete</button>
                                                 </>
                                             )
