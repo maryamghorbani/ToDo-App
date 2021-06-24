@@ -9,6 +9,7 @@ function Todo (props) {
     const { item } = props;
 
     const [ loading , setLoading ] = useState(false);
+    let status;
 
 
     const [ edit , setEdit ] = useState(false);
@@ -48,6 +49,7 @@ function Todo (props) {
 
     }
 
+
     return (
         <>
             {
@@ -62,23 +64,13 @@ function Todo (props) {
                                 <div>
                                     {
                                         loading
-                                            ? <h2>Loading data ...</h2>
+                                            ? <h5>Loading data ...</h5>
                                             : (
-                                                <button type="button" className={`btn btn-sm mr-1 ${ !item.done ? 'btn-success' : 'btn-warning'}`} onClick={doneHandler}>{ item.done ? 'undone' : 'done'}</button>
-                                            )
-                                    }
-                                    {
-                                        loading
-                                            ? <h2>Loading data ...</h2>
-                                            : (
-                                                <button type="button" className="btn btn-info btn-sm mr-1" onClick={() => setEdit(true)}>edit</button>
-                                            )
-                                    }
-                                    {
-                                        loading
-                                            ? <h2>Loading data ...</h2>
-                                            : (
-                                                <button type="button" className="btn btn-danger btn-sm" onClick={deleteHandler}>delete</button>
+                                                <>
+                                                    <button type="button" className="btn btn-info btn-sm mr-1" onClick={() => setEdit(true)}>edit</button>
+                                                    <button type="button" className={`btn btn-sm mr-1 ${ !item.done ? 'btn-success' : 'btn-warning'}`} onClick={doneHandler}>{ item.done ? 'undone' : 'done'}</button>
+                                                    <button type="button" className="btn btn-danger btn-sm" onClick={deleteHandler}>delete</button>
+                                                </>
                                             )
                                     }
 
