@@ -1,6 +1,6 @@
 import React , { useContext} from 'react';
 import AuthContext from "../../Context/auth";
-
+import { Link } from 'react-router-dom';
 
 function Header() {
 
@@ -22,13 +22,13 @@ function Header() {
 
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <a className="nav-link" href="/">Home</a>
+                            <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/about">About</a>
+                            <Link className="nav-link" to="/about">About</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/contact">Contact</a>
+                            <Link className="nav-link" to="/contact">Contact</Link>
                         </li>
                     </ul>
 
