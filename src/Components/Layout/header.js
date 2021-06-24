@@ -1,6 +1,6 @@
 import React , { useContext} from 'react';
 import AuthContext from "../../Context/auth";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
 
@@ -21,19 +21,14 @@ function Header() {
 
 
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <Link className="nav-link" to="/">Home</Link>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" exact to="/">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to={{
-                                pathname : '/about',
-                                search : 'salam', // send some data to another routs
-                                hash : '#about' // access to an element with special id
-                            }}>About</Link>
+                            <NavLink className="nav-link" to="/about">About</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to={location => console.log(`/contact${location.search}`)}>Contact</Link>
-                            {/*get data from current route*/}
+                            <NavLink className="nav-link" to="/contact">Contact</NavLink>
                         </li>
                     </ul>
 
