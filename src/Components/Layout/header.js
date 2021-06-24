@@ -25,7 +25,11 @@ function Header() {
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/about">About</Link>
+                            <Link className="nav-link" to={{
+                                pathname : '/about',
+                                search : 'salam',
+                                hash : '#about'
+                            }}>About</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/contact">Contact</Link>
