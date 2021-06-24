@@ -22,7 +22,10 @@ function Header() {
 
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <NavLink className="nav-link" exact to="/">Home</NavLink>
+                            <NavLink className="nav-link" exact to="/" activeStyle={{
+                                backgroundColor : 'pink',
+                                borderRadius : '4px'
+                            }}>Home</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/about">About</NavLink>
