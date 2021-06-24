@@ -1,11 +1,10 @@
-import React , { useReducer , useEffect , useState } from 'react';
+import React , { useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter as Router , Route } from "react-router-dom";
 import todoApi from "../Api/todos";
 
 // import components
 import Header from "./Layout/header";
-import FormAddTodo from "./Todo/FormAddTodo";
-import TodoList from "./Todo/TodoList";
 
 // import context
 import TodosContext from "../Context/todos";
@@ -14,6 +13,8 @@ import AuthContext from "../Context/auth";
 // import reducer
 import AppReducer from "../Reducers/appReducer";
 
+// import routs
+import Home from "../Routs/Home";
 
 
 
@@ -128,38 +129,14 @@ function App() {
     } )
 
 
-    const [ loading , setLoading ] = useState();
-
-
-    useEffect(() => {
-        setLoading(true);
-        todoApi.get(`/todos.json`)
-            .then( response => jsonHandler(response.data) )
-            .catch( err => {} );
-    },[] ) // run a function just 1 bar
-
-
-    let jsonHandler = (data) => {
-        setLoading(false);
-        let todos = Object
-                        .entries(data)
-                        .map(([key,value]) => {
-                            return {
-                                ...value,
-                                key
-                            }
-                        } )
-        dispatch({ type : 'init_todo' , payload : { todos }})
-    }
-
-
 
 
     return(
-                <AuthContext.Provider value={{
-                    authenticated : state.authenticated,
-                    dispatch
-                }}>
+        <Router>
+            <AuthContext.Provider value={{
+                authenticated : state.authenticated,
+                dispatch
+            }}>
                 <TodosContext.Provider value={{
                     todos : state.todos,
                     dispatch
@@ -167,30 +144,14 @@ function App() {
                     <div className="App">
                         <Header />
                         <main>
-                            <section className="jumbotron">
-                                <div className="container d-flex flex-column align-items-center">
-                                    <h1 className="jumbotron-heading">Welcome!</h1>
-                                    <p className="lead text-muted">To get started, add some items to your list:</p>
-                                    <FormAddTodo />
-                                </div>
-                            </section>
-                            <div className="todosList">
-                                <div className="container">
-                                    <div className="d-flex flex-column align-items-center ">
-                                        {
-                                            loading
-                                            ? <h2> Loading data ... </h2>
-                                                : ( <TodoList /> )
-                                        }
-                                    </div>
-
-                                </div>
-                            </div>
+                            <Route path="/">
+                                <Home/>
+                            </Route>
                         </main>
                     </div>
                 </TodosContext.Provider>
             </AuthContext.Provider>
-
+        </Router>
         )
 }
 
