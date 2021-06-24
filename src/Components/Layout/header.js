@@ -32,7 +32,8 @@ function Header() {
                             }}>About</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/contact">Contact</Link>
+                            <Link className="nav-link" to={location => console.log(location)}>Contact</Link>
+                            {/*get data from current route*/}
                         </li>
                     </ul>
 
