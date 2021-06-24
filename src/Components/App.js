@@ -15,6 +15,8 @@ import AppReducer from "../Reducers/appReducer";
 
 // import routs
 import Home from "../Routs/Home";
+import About from "../Routs/About";
+import Contact from "../Routs/Contact";
 
 
 
@@ -144,9 +146,9 @@ function App() {
                     <div className="App">
                         <Header />
                         <main>
-                            <Route path="/">
-                                <Home/>
-                            </Route>
+                            <Route path="/" component={Home} exact />
+                            <Route path="/about" component={About} />
+                            <Route path="/contact" component={Contact} />
                         </main>
                     </div>
                 </TodosContext.Provider>
