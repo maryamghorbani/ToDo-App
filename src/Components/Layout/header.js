@@ -32,7 +32,7 @@ function Header() {
                             }}>About</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to={location => console.log(location)}>Contact</Link>
+                            <Link className="nav-link" to={location => console.log(`/contact${location.search}`)}>Contact</Link>
                             {/*get data from current route*/}
                         </li>
                     </ul>
