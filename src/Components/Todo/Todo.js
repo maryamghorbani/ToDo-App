@@ -8,10 +8,14 @@ function Todo (props) {
 
     const { item } = props;
 
+    const [ loading , setLoading ] = useState(false);
+
+
     const [ edit , setEdit ] = useState(false);
     const todosContext = useContext(TodosContext);
 
     let editHandler = text => {
+        setLoading(true);
         todoApi.put(`/todos/${item.key}.json` , { done : item.done , text })
             .then( response => {
                 todosContext.dispatch({ type : 'edit_todo' , payload : { key : item.key , text}})
@@ -22,6 +26,7 @@ function Todo (props) {
 
 
     let doneHandler = e => {
+        setLoading(true);
         todoApi.put(`/todos/${item.key}.json` , { done : ! item.done , text : item.text })
             .then( response => {
                 todosContext.dispatch({ type : 'toggle_todo' , payload : { key : item.key}})
@@ -31,6 +36,7 @@ function Todo (props) {
 
 
     let deleteHandler = e => {
+        setLoading(true);
         //ajax
         todoApi.delete(`/todos/${item.key}.json`)
             .then(response => {
@@ -54,9 +60,29 @@ function Todo (props) {
                                     {item.text}
                                 </div>
                                 <div>
-                                    <button type="button" className={`btn btn-sm mr-1 ${ !item.done ? 'btn-success' : 'btn-warning'}`} onClick={doneHandler}>{ item.done ? 'undone' : 'done'}</button>
-                                    <button type="button" className="btn btn-info btn-sm mr-1" onClick={() => setEdit(true)}>edit</button>
-                                    <button type="button" className="btn btn-danger btn-sm" onClick={deleteHandler}>delete</button>
+                                    {
+                                        loading
+                                            ? <h2>Loading data ...</h2>
+                                            : (
+                                                <button type="button" className={`btn btn-sm mr-1 ${ !item.done ? 'btn-success' : 'btn-warning'}`} onClick={doneHandler}>{ item.done ? 'undone' : 'done'}</button>
+                                            )
+                                    }
+                                    {
+                                        loading
+                                            ? <h2>Loading data ...</h2>
+                                            : (
+                                                <button type="button" className="btn btn-info btn-sm mr-1" onClick={() => setEdit(true)}>edit</button>
+                                            )
+                                    }
+                                    {
+                                        loading
+                                            ? <h2>Loading data ...</h2>
+                                            : (
+                                                <button type="button" className="btn btn-danger btn-sm" onClick={deleteHandler}>delete</button>
+                                            )
+                                    }
+
+
                                 </div>
                             </div>
                         </div>
