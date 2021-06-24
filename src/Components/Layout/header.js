@@ -27,8 +27,8 @@ function Header() {
                         <li className="nav-item">
                             <Link className="nav-link" to={{
                                 pathname : '/about',
-                                search : 'salam',
-                                hash : '#about'
+                                search : 'salam', // send some data to another routs
+                                hash : '#about' // access to an element with special id
                             }}>About</Link>
                         </li>
                         <li className="nav-item">
