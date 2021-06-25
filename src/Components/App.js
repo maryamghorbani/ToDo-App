@@ -1,7 +1,7 @@
 import React , { useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router , Route , Switch } from "react-router-dom";
-import todoApi from "../Api/todos";
+import loadable from '@loadable/component';
 
 // import components
 import Header from "./Layout/header";
@@ -14,15 +14,12 @@ import AuthContext from "../Context/auth";
 import AppReducer from "../Reducers/appReducer";
 
 
-import AsyncComponent from "../AsyncComponent";
-
-
 // import routs
-const Home = AsyncComponent(() => import("../Routs/Home").then(module => module.default))
-const About = AsyncComponent(() => import("../Routs/About").then(module => module.default))
-const Contact = AsyncComponent(() => import("../Routs/Contact").then(module => module.default))
-const Todo = AsyncComponent(() => import("../Routs/Todo").then(module => module.default))
-const NotFound = AsyncComponent(() => import("../Routs/NotFound").then(module => module.default))
+const Home = loadable (() => import("../Routs/Home"))
+const About = loadable(() => import("../Routs/About"))
+const Contact = loadable(() => import("../Routs/Contact"))
+const Todo = loadable(() => import("../Routs/Todo"))
+const NotFound = loadable(() => import("../Routs/NotFound"))
 
 
 
