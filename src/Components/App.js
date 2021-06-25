@@ -17,6 +17,7 @@ import AppReducer from "../Reducers/appReducer";
 import Home from "../Routs/Home";
 import About from "../Routs/About";
 import Contact from "../Routs/Contact";
+import Todo from "../Routs/Todo";
 
 
 
@@ -147,6 +148,7 @@ function App() {
                         <Header />
                         <main>
                             <Route path="/" component={Home} exact />
+                            <Route path="/todos/:id" component={Todo} />
                             <Route path="/about" component={About} />
                             <Route path="/contact" component={Contact} />
                         </main>
