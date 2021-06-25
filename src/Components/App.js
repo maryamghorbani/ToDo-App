@@ -148,7 +148,7 @@ function App() {
                         <Header />
                         <main>
                             <Route path="/" component={Home} exact />
-                            <Route path="/todos/:id" component={Todo} />
+                            <Route path="/todos/:todo" component={Todo} />
                             <Route path="/about" component={About} />
                             <Route path="/contact" component={Contact} />
                         </main>

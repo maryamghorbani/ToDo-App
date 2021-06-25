@@ -1,9 +1,31 @@
-import React from 'react';
+import React , { useEffect , useState } from 'react';
 
-function Todo() {
-    console.log(this.props.match.params);
+import { useParams } from 'react-router-dom';
+
+import todoApi from "../Api/todos";
+
+function Todo(props) {
+    const params = useParams();
+    const [todo , setTodo] = useState({});
+
+    useEffect(() => {
+        todoApi.get(`/todos/${params.todo}.json`)
+            .then( response => {
+                setTodo({ ...response.data , key : params.todo })
+            })
+            .catch( err => console.log(err) )
+    }, [])
+
     return (
-        <h2> Todo Details </h2>
+        <div className="container">
+            <div className="row">
+                <div className="col-12">
+                    <h2> Todo Detail </h2>
+                    <p>{todo.text}</p>
+                    <span className={`badge ${todo.done ? 'badge-success' : 'badge-warning'}`}>{ todo.done ? 'done' : 'undone' }</span>
+                </div>
+            </div>
+        </div>
     )
 }
 
