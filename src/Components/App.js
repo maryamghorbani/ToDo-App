@@ -18,6 +18,7 @@ import Home from "../Routs/Home";
 import About from "../Routs/About";
 import Contact from "../Routs/Contact";
 import Todo from "../Routs/Todo";
+import NotFound from "../Routs/NotFound";
 
 
 
@@ -151,8 +152,10 @@ function App() {
                                 <Route path="/" component={Home} exact />
                                 <Route path="/about" component={About} />
                                 <Route path="/contact" component={Contact} />
-                                <Route path="/:todo" component={Todo} />
+                                <Route path="/todos/:todo" component={Todo} />
                                 {/*    dynamic route must be the last one route     */}
+                                <Route path="/404" component={NotFound} />
+                                <Route path="" component={NotFound} />
                             </Switch>
                         </main>
                     </div>
