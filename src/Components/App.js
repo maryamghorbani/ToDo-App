@@ -1,6 +1,6 @@
 import React , { useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter as Router , Route } from "react-router-dom";
+import { BrowserRouter as Router , Route , Switch } from "react-router-dom";
 import todoApi from "../Api/todos";
 
 // import components
@@ -147,10 +147,13 @@ function App() {
                     <div className="App">
                         <Header />
                         <main>
-                            <Route path="/" component={Home} exact />
-                            <Route path="/todos/:todo" component={Todo} />
-                            <Route path="/about" component={About} />
-                            <Route path="/contact" component={Contact} />
+                            <Switch>
+                                <Route path="/" component={Home} exact />
+                                <Route path="/about" component={About} />
+                                <Route path="/contact" component={Contact} />
+                                <Route path="/:todo" component={Todo} />
+                                {/*    dynamic route must be the last one route     */}
+                            </Switch>
                         </main>
                     </div>
                 </TodosContext.Provider>

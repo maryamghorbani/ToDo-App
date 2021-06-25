@@ -28,7 +28,7 @@ function Todo(props) {
                             ? <h2>Data is Loading ...</h2>
                             : (
                                 <>
-                                    <h2> Todo Detail </h2>
+                                    <h4> Todo Detail </h4>
                                     <p>{todo.text}</p>
                                     <span className={`badge ${todo.done ? 'badge-success' : 'badge-warning'}`}>{ todo.done ? 'done' : 'undone' }</span>
                                 </>
