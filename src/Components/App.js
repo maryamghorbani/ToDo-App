@@ -13,12 +13,16 @@ import AuthContext from "../Context/auth";
 // import reducer
 import AppReducer from "../Reducers/appReducer";
 
+
+import AsyncComponent from "../AsyncComponent";
+
+
 // import routs
-import Home from "../Routs/Home";
-import About from "../Routs/About";
-import Contact from "../Routs/Contact";
-import Todo from "../Routs/Todo";
-import NotFound from "../Routs/NotFound";
+const Home = AsyncComponent(() => import("../Routs/Home").then(module => module.default))
+const About = AsyncComponent(() => import("../Routs/About").then(module => module.default))
+const Contact = AsyncComponent(() => import("../Routs/Contact").then(module => module.default))
+const Todo = AsyncComponent(() => import("../Routs/Todo").then(module => module.default))
+const NotFound = AsyncComponent(() => import("../Routs/NotFound").then(module => module.default))
 
 
 
